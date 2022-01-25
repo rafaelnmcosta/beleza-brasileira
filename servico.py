@@ -2,19 +2,49 @@ from datetime import datetime
 
 class Servico:
 
-    horario = "00/00/0000 00:00"
-    duracao = 0
-    descricao = "new"
+    def __init__(self, paramData, paramHorario, paramDuracao, paramDescricao):
+        self.__data = None #datetime.strptime(paramData, '%d/%m/%Y')
+        self.__horario = None #datetime.strptime(paramHorario, '%H:%M')
+        self.__duracao = None
+        self.__descricao = None
+        self.__estabelecimento = None
 
-    def __init__(self, paramHorario, paramDuracao, paramDescricao):
-        self._horario = datetime.strptime(paramHorario, '%d/%m/%Y %H:%M') # Converte o horario passado em string para o tipo Date
-        self._duracao = paramDuracao
-        self._descricao = paramDescricao
+    @property
+    def data(self):
+        return  self.__data
 
     @property
     def horario(self):
-        return self._horario
+        return self.__horario
+
+    @property
     def duracao(self):
-        return self.duracao
+        return self.__duracao
+
+    @property
     def descricao(self):
-        return self._descricao
+        return self.__descricao
+
+    @property
+    def estabelecimento(self):
+        return self.__estabelecimento
+
+    @data.setter
+    def data(self, newData):
+        raise ValueError("Impossivel alterar a data diretamente. Use a funcao de novo servico/edicao.")
+
+    @horario.setter
+    def horario(self, newHorario):
+        raise ValueError("Impossivel alterar o horario diretamente. Use a funcao de novo servico/edicao.")
+
+    @duracao.setter
+    def duracao(self, newDuracao):
+        raise ValueError("Impossivel alterar a duracao diretamente. Use a funcao de novo servico/edicao.")
+
+    @descricao.setter
+    def descricao(self, newDescricao):
+        raise ValueError("Impossivel alterar a descricao diretamente. Use a funcao de novo servico/edicao.")
+
+    @estabelecimento.setter
+    def estabelecimento(self, newEstabelecimento):
+        raise ValueError("Impossivel alterar o estabelecimento diretamente. Use a funcao de novo servico/edicao.")

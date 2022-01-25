@@ -13,11 +13,10 @@ Classe: Usuário
 - Senha
 - Tipo (Cliente ou Loja)
 
-+ addNome()
-+ addEndereco()
-+ addTelefone()
-+ addID()
-+ addSenha()
++ Setters
++ Cadastro()
++ validaId()
++ validaSenha()
 _______
 Classe: Cliente
 Herda Usuário
@@ -25,7 +24,7 @@ Herda Usuário
 - CPF
 - Lista de serviços
 
-+ addCPF
++ Setters
 + solicitaServico() -cria uma solicitação de um serviço em determinado horário pra um estabelecimento
 + cancelaSolicitacao() -cancela a solicitação feita
 _______
@@ -37,10 +36,18 @@ Herda Usuário
 - Calendário de serviços (uma lista com serviços marcados e respectivos horários)
 - Lista de solicitações (Lista com as solicitações de serviços feitas por clientes)
 
-+ addCNPJ()
-+ addTipo()
-+ addCalendario()
-+ addSolicitacoes()
++ Setters
 + aceitaServico() -adiciona um serviço na lista do estabelecimento e do cliente, torna o horário ocupado
 + cancelaServico() -remove o serviço da lista do estabelecimento e do cliente, torna o horário livre
 + mostraHorariosLivres() -dá uma lista dos horários livres dentro do dia informado
+_______
+Classe: Serviço
+
+- Data
+- Horário
+- Duração
+- Descrição
+- Estabelecimento
+
++ Setters
++ novoServico()
