@@ -48,3 +48,6 @@ class Servico:
     @estabelecimento.setter
     def estabelecimento(self, newEstabelecimento):
         raise ValueError("Impossivel alterar o estabelecimento diretamente. Use a funcao de novo servico/edicao.")
+
+    def novoServico(self):
+        print("Novo serviço\n")
