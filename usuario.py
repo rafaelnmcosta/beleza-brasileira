@@ -1,13 +1,10 @@
 class Usuario:
 
-    seq = 0
-
     def __init__(self):
         self.nome = None
         self.endereco = None
         self.telefone = None
-        self.__class__.seq += 1
-        self.__id = self.__class__.seq
+        self.__id = None
         self.__senha = None
         self.__tipo = None
 
@@ -21,7 +18,7 @@ class Usuario:
 
     @property
     def tipo(self):
-        return self._tipo
+        return self.__tipo
 
     @id.setter
     def id(self, newId):
@@ -40,32 +37,43 @@ class Usuario:
         self.nome = input()
 
         print("Informe o endereco: ")
-        self.endereco = input()
+        endTemp = input()
+        self.endereco = endTemp
 
         print("Informe o telefone: ")
         self.telefone = input()
 
         print("Informe a ID desejada: ")
         idTemp = input()
-        while(validaId(idTemp)==False)
+        while not validaId(idTemp):
             print("ID invalida! Informe outra!\n")
             idTemp = input()
         self.__id = idTemp
 
         print("Informe a senha a ser usada: ")
         senhaTemp = input()
-        while(validaSenha(senhaTemp)==False)
+        while not validaSenha(senhaTemp):
             print("Senha invalida! Informe outra!\n")
             senhaTemp = input()
         self.__senha = senhaTemp
 
         print("Informe o tipo de conta que deseja ser criada(C p/ cliente; E p/ estabelecimento):")
         tipoTemp = input()
-        while(tipoTemp!='C' || tipoTemp!='E')
+        while tipoTemp != 'C' and tipoTemp != 'E':
             print("Informe apenas C p/ cliente ou E p/ estabelecimento")
             tipoTemp = input()
         self.__tipo = tipoTemp
 
-    def validaId(self):
 
-    def validaSenha(self):
+def validaId(idTemp):
+    return True
+
+
+def validaSenha(senhaTemp):
+    return True
+
+
+user = Usuario()
+user.cadastro()
+
+print(user.nome, "\n", user.endereco, "\n", user.telefone, "\n", user.id, "\n", user.senha, "\n", user.tipo)
