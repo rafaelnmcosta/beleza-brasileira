@@ -47,8 +47,9 @@ class Usuario:
             print("Informe DDD e o dígito 9 no início do número:")
             self.telefone = input()
             self.telefone = str(self.telefone)
-            self.telefone = '({}) {}-{}-{}'.format(self.telefone[0:2],
-                                                  self.telefone[2], self.telefone[3:7], self.telefone[7:])
+
+        self.telefone = '({}) {}-{}-{}'.format(self.telefone[0:2],
+                                                self.telefone[2], self.telefone[3:7], self.telefone[7:])
 
         print("Informe a ID desejada: ")
         idTemp = input()
