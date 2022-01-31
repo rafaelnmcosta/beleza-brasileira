@@ -39,11 +39,16 @@ class Usuario:
         self.nome = input()
 
         print("Informe o endereco: ")
-        endTemp = input()
-        self.endereco = endTemp
+        self.endereco = input()
 
-        print("Informe o telefone: ")
+        print("Informe o telefone (11 dígitos): ")
         self.telefone = input()
+        while len(self.telefone) != 11:
+            print("Informe DDD e o dígito 9 no início do número:")
+            self.telefone = input()
+            self.telefone = str(self.telefone)
+            self.telefone = '({}) {}-{}-{}'.format(self.telefone[0:2],
+                                                  self.telefone[2], self.telefone[3:7], self.telefone[7:])
 
         print("Informe a ID desejada: ")
         idTemp = input()
@@ -60,7 +65,7 @@ class Usuario:
         self.__senha = senhaTemp
 
         print("Informe o tipo de conta que deseja ser criada(C p/ cliente; E p/ estabelecimento):")
-        tipoTemp = input()
+        tipoTemp = input().strip().upper()[0]
         while tipoTemp != 'C' and tipoTemp != 'E':
             print("Informe apenas C p/ cliente ou E p/ estabelecimento")
             tipoTemp = input()
