@@ -1,3 +1,5 @@
+MIN_LEN_SENHA = 6 #Comprimento mínimo da senha de usuário
+
 class Usuario:
 
     def __init__(self):
@@ -53,7 +55,7 @@ class Usuario:
         print("Informe a senha a ser usada: ")
         senhaTemp = input()
         while not validaSenha(senhaTemp):
-            print("Senha invalida! Informe outra!\n")
+            print("Senha: ")
             senhaTemp = input()
         self.__senha = senhaTemp
 
@@ -66,14 +68,18 @@ class Usuario:
 
 
 def validaId(idTemp):
+    # Faz uma busca no banco de dados para verificar se essa ID já existe
     return True
 
 
 def validaSenha(senhaTemp):
+    if senhaTemp.isalpha():
+        print("A senha precisa conter ao menos um numero!")
+        return False
+    if senhaTemp.isnumeric():
+        print("A senha precisa conter ao menos uma letra!")
+        return False
+    if len(senhaTemp)<MIN_LEN_SENHA:
+        print("A senha precisa ter ao menos 6 digitos!")
+        return False
     return True
-
-
-user = Usuario()
-user.cadastro()
-
-print(user.nome, "\n", user.endereco, "\n", user.telefone, "\n", user.id, "\n", user.senha, "\n", user.tipo)
