@@ -7,11 +7,12 @@ class Servico:
         self.__horario = None #datetime.strptime(paramHorario, '%H:%M')
         self.__duracao = None
         self.__descricao = None
-        self.__estabelecimento = None
+        self.__cliente = None # Id do usuário que está requisitando um serviço
+        self.__estabelecimento = None # Id do estabelecimento que realizará o serviço
 
     @property
     def data(self):
-        return  self.__data
+        return self.__data
 
     @property
     def horario(self):
@@ -24,6 +25,10 @@ class Servico:
     @property
     def descricao(self):
         return self.__descricao
+
+    @property
+    def cliente(self):
+        return self.__cliente
 
     @property
     def estabelecimento(self):
@@ -44,6 +49,10 @@ class Servico:
     @descricao.setter
     def descricao(self, newDescricao):
         raise ValueError("Impossivel alterar a descricao diretamente. Use a funcao de novo servico/edicao.")
+
+    @cliente.setter
+    def cliente(self, newCliente):
+        raise ValueError("Impossivel alterar o cliente diretamente. Use a funcao de novo servico/edicao.")
 
     @estabelecimento.setter
     def estabelecimento(self, newEstabelecimento):
