@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% block title %} {{ user['nome'] }} {% endblock %}</h2>
+    <p>{{ user['endereco'] }}</p>
+    <p>{{ user['telefone'] }}</p>
+    <a href="{{ url_for('edicao', id=user['id']) }}">
+        <button type="button" class="btn btn-primary">Editar</button>
+    </a>
+{% endblock %}
