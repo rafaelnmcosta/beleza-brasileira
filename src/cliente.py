@@ -3,10 +3,10 @@ from usuario import Usuario
 
 class Cliente:
 
-    def __init__(self, paramNome, paramEndereco, paramTelefone, paramId, paramSenha, paramTipo, paramCpf):
-        super().__init__(paramNome, paramEndereco, paramTelefone, paramId, paramSenha, paramTipo)
-        self.__cpf = paramCpf
-        self.__listaServicos = None
+    def __init__(self, param_nome, param_endereco, param_telefone, param_ref, param_senha, param_tipo, param_cpf):
+        super().__init__(param_nome, param_endereco, param_telefone, param_ref, param_senha, param_tipo)
+        self.__cpf = param_cpf
+        self.__lista_servicos = None
 
     @property
 

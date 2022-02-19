@@ -1,16 +1,16 @@
 class Usuario:
 
-    def __init__(self, paramNome, paramEndereco, paramTelefone, paramId, paramSenha, paramTipo):
-        self.nome = paramNome
-        self.endereco = paramEndereco
-        self.telefone = paramTelefone
-        self.__id = paramId
-        self.__senha = paramSenha
-        self.__tipo = paramTipo
+    def __init__(self, param_nome, param_endereco, param_telefone, param_ref, param_senha, param_tipo):
+        self.nome = param_nome
+        self.endereco = param_endereco
+        self.telefone = param_telefone
+        self.__ref = param_ref
+        self.__senha = param_senha
+        self.__tipo = param_tipo
 
     @property
-    def id(self):
-        return self.__id
+    def ref(self):
+        return self.__ref
 
     @property
     def senha(self):
@@ -20,14 +20,14 @@ class Usuario:
     def tipo(self):
         return self.__tipo
 
-    @id.setter
-    def id(self, newId):
-        raise ValueError("Impossivel alterar ID diretamente. Use a funcao de cadastro/edicao.")
+    @ref.setter
+    def id(self, new_ref):
+        raise ValueError("Impossivel alterar a Referência diretamente. Use a funcao de cadastro/edicao.")
 
     @senha.setter
-    def senha(self, newSenha):
-        raise ValueError("Impossivel alterar Senha diretamente. Use a funcao de cadastro/edicao.")
+    def senha(self, new_senha):
+        raise ValueError("Impossivel alterar a Senha diretamente. Use a funcao de cadastro/edicao.")
 
     @tipo.setter
-    def tipo(self, newSenha):
-        raise ValueError("Impossivel alterar Senha diretamente. Use a funcao de cadastro/edicao.")
+    def tipo(self, new_tipo):
+        raise ValueError("Impossivel alterar o Tipo diretamente. Use a funcao de cadastro/edicao.")

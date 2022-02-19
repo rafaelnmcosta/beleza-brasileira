@@ -2,13 +2,13 @@ from datetime import datetime
 
 class Servico:
 
-    def __init__(self, paramData, paramHorario, paramDuracao, paramDescricao):
+    def __init__(self, param_data, param_horario, param_duracao, param_descricao):
         self.__data = None #datetime.strptime(paramData, '%d/%m/%Y')
         self.__horario = None #datetime.strptime(paramHorario, '%H:%M')
         self.__duracao = None
         self.__descricao = None
-        self.__cliente = None # Id do usuário que está requisitando um serviço
-        self.__estabelecimento = None # Id do estabelecimento que realizará o serviço
+        self.__ref_cliente = None # Referencia do usuário que está requisitando um serviço
+        self.__ref_estab = None # Referencia do estabelecimento que realizará o serviço
 
     @property
     def data(self):
@@ -28,35 +28,35 @@ class Servico:
 
     @property
     def cliente(self):
-        return self.__cliente
+        return self.__ref_cliente
 
     @property
     def estabelecimento(self):
-        return self.__estabelecimento
+        return self.__ref_estab
 
     @data.setter
-    def data(self, newData):
+    def data(self, new_data):
         raise ValueError("Impossivel alterar a data diretamente. Use a funcao de novo servico/edicao.")
 
     @horario.setter
-    def horario(self, newHorario):
+    def horario(self, new_horario):
         raise ValueError("Impossivel alterar o horario diretamente. Use a funcao de novo servico/edicao.")
 
     @duracao.setter
-    def duracao(self, newDuracao):
+    def duracao(self, new_duracao):
         raise ValueError("Impossivel alterar a duracao diretamente. Use a funcao de novo servico/edicao.")
 
     @descricao.setter
-    def descricao(self, newDescricao):
+    def descricao(self, new_descricao):
         raise ValueError("Impossivel alterar a descricao diretamente. Use a funcao de novo servico/edicao.")
 
     @cliente.setter
-    def cliente(self, newCliente):
+    def cliente(self, new_cliente):
         raise ValueError("Impossivel alterar o cliente diretamente. Use a funcao de novo servico/edicao.")
 
     @estabelecimento.setter
-    def estabelecimento(self, newEstabelecimento):
+    def estab(self, new_estab):
         raise ValueError("Impossivel alterar o estabelecimento diretamente. Use a funcao de novo servico/edicao.")
 
-    def novoServico(self):
+    def novo_servico(self):
         print("Novo serviço\n")
