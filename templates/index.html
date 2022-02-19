@@ -4,7 +4,7 @@
     <h1>{% block title %} Beleza Brasileira {% endblock %}</h1>
     {% for user in users %}
         <hr>
-        <a href="{{ url_for('user', user_id=user['id']) }}">
+        <a href="{{ url_for('user', user_ref=user['ref']) }}">
             <h2>{{ user['nome'] }}</h2>
         </a>
         <span class="badge badge-primary">{{ user['endereco'] }}</span>

@@ -26,6 +26,41 @@
     </div>
 
     <div class="form-group">
+        <label for="ref">Referencia (@):</label>
+        <input type="text" name="ref"
+               placeholder="@usuario" class="form-control"
+               value="{{ request.form['ref'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha"
+               placeholder="*********" class="form-control"
+               value="{{ request.form['senha'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="tipo">Tipo de conta:</label>
+        <input type="text" name="tipo"
+               placeholder="cliente ou estabelecimento" class="form-control"
+               value="{{ request.form['tipo'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="cpf_cnpj">CPF/CNPJ:</label>
+        <input type="text" name="cpf_cnpj"
+               placeholder="CPF ou CNPJ" class="form-control"
+               value="{{ request.form['cpf_cnpj'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao"
+               placeholder="Informações" class="form-control"
+               value="{{ request.form['descricao'] }}"/>
+    </div>
+
+    <div class="form-group">
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </div>
 </form>

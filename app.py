@@ -9,7 +9,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
+'''
 # Função que encontra um usuário de acordo com sua id no banco de dados
 def get_user(user_id):
     conn = get_db_connection()
@@ -18,11 +18,21 @@ def get_user(user_id):
     if user is None:
         abort(404)
     return user
+'''
+
+# Encontra um usuário pela referencia
+def get_user_by_ref(user_ref):
+    conn = get_db_connection()
+    user = conn.execute('SELECT * FROM users WHERE ref = ?', (user_ref,)).fetchone()
+    conn.close()
+    if user is None:
+        abort(404)
+    return user
 
 
 # Inicia a variavel app que conterá o site
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'UmaStringMuitoGrande'
+app.config['SECRET_KEY'] = 'Uma_string_muito_grande'
 
 
 # Render da tela inicial do programa, carrega todos os usuários do banco de dados
@@ -35,9 +45,9 @@ def index():
 
 
 # Retorna a página pessoal de cada usuário, endereçada com sua respectiva id
-@app.route('/<int:user_id>')
-def user(user_id):
-    user = get_user(user_id)
+@app.route('/<user_ref>')
+def user(user_ref):
+    user = get_user_by_ref(user_ref)
     return render_template('user.html', user=user)
 
 
@@ -54,13 +64,18 @@ def cadastro():
         nome = request.form['nome']
         endereco = request.form['endereco']
         telefone = request.form['telefone']
+        ref = request.form['ref']
+        senha = request.form['senha']
+        tipo = request.form['tipo']
+        cpf_cnpj = request.form['cpf_cnpj']
+        descricao = request.form['descricao']
 
-        if nome and endereco and telefone:
+        if nome and endereco and telefone and ref and senha and tipo and cpf_cnpj:
             conn = get_db_connection()
             conn.execute('INSERT INTO users'
-                         '(nome, endereco, telefone)'
-                         'VALUES (?, ?, ?)',
-                         (nome, endereco, telefone)
+                         '(nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao)'
+                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+                         (nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao)
                          )
             conn.commit()
             conn.close()
@@ -75,19 +90,24 @@ def cadastro():
 
 
 # Função que retorna a página de edição do cadastro de um usuário
-@app.route('/<int:id>/edicao', methods=('GET', 'POST'))
-def edicao(id):
-    user = get_user(id)
+@app.route('/<ref>/edicao', methods=('GET', 'POST'))
+def edicao(ref):
+    user = get_user_by_ref(ref)
     if request.method == 'POST':
         nome = request.form['nome']
         endereco = request.form['endereco']
         telefone = request.form['telefone']
+        ref = request.form['ref']
+        senha = request.form['senha']
+        tipo = request.form['tipo']
+        cpf_cnpj = request.form['cpf_cnpj']
+        descricao = request.form['descricao']
 
-        if nome and endereco and telefone:
+        if nome and endereco and telefone and ref and senha and tipo and cpf_cnpj:
             conn = get_db_connection()
-            conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?'
-                         ' WHERE id = ?',
-                         (nome, endereco, telefone, id)
+            conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?, ref = ?, senha = ?, tipo = ?, cpf_cnpj = ?, descricao = ?'
+                         ' WHERE ref = ?',
+                         (nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao, ref)
                          )
             conn.commit()
             conn.close()
@@ -100,11 +120,11 @@ def edicao(id):
 
 
 # Função que exclui um usuário do banco de dados
-@app.route('/<int:id>/delete', methods=('POST',))
-def delete(id):
-    user = get_user(id)
+@app.route('/<ref>/delete', methods=('POST',))
+def delete(ref):
+    user = get_user_by_ref(ref)
     conn = get_db_connection()
-    conn.execute('DELETE FROM users WHERE id = ?', (id,))
+    conn.execute('DELETE FROM users WHERE ref = ?', (ref,))
     conn.commit()
     conn.close()
     flash('"{}" foi excluído com sucesso!'.format(user['nome']))

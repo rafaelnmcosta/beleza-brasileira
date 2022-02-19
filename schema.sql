@@ -9,8 +9,8 @@ CREATE TABLE users (
     ref TEXT NOT NULL,
     senha TEXT NOT NULL,
     tipo TEXT NOT NULL,
-    cpf-cnpj TEXT NOT NULL,
-    categoria TEXT NOT NULL
+    cpf_cnpj TEXT NOT NULL,
+    descricao TEXT
 );
 
 CREATE TABLE services (

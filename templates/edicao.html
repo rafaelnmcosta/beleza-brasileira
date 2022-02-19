@@ -24,12 +24,48 @@
                placeholder="Telefone do usuario" class="form-control"
                value="{{ request.form['telefone'] or user['telefone'] }}"/>
     </div>
+
+    <div class="form-group">
+        <label for="ref">Referencia (@):</label>
+        <input type="text" name="ref"
+               placeholder="@usuario" class="form-control"
+               value="{{ request.form['ref'] or user['ref'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha"
+               placeholder="*********" class="form-control"
+               value="{{ request.form['senha'] or user['senha'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="tipo">Tipo de conta:</label>
+        <input type="text" name="tipo"
+               placeholder="cliente ou estabelecimento" class="form-control"
+               value="{{ request.form['tipo'] or user['tipo'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="cpf_cnpj">CPF/CNPJ:</label>
+        <input type="text" name="cpf_cnpj"
+               placeholder="CPF ou CNPJ" class="form-control"
+               value="{{ request.form['cpf_cnpj'] or user['cpf_cnpj'] }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao"
+               placeholder="Informações" class="form-control"
+               value="{{ request.form['descricao'] or user['descricao'] }}"/>
+    </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Alterar</button>
     </div>
 </form>
 <hr>
-<form action="{{ url_for('delete', id=user['id']) }}" method="POST">
+<form action="{{ url_for('delete', ref=user['ref']) }}" method="POST">
     <input type="submit" value="Excluir usuário"
             class="btn btn-danger btn-sm"
             onclick="return confirm('Quer realmente excluir este usuário?')">
