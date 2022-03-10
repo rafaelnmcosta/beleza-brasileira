@@ -9,16 +9,6 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-'''
-# Função que encontra um usuário de acordo com sua id no banco de dados
-def get_user(user_id):
-    conn = get_db_connection()
-    user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
-    conn.close()
-    if user is None:
-        abort(404)
-    return user
-'''
 
 # Encontra um usuário pela referencia
 def get_user_by_ref(user_ref):
