@@ -21,7 +21,7 @@ class Usuario:
         return self.__tipo
 
     @ref.setter
-    def id(self, new_ref):
+    def ref(self, new_ref):
         raise ValueError("Impossivel alterar a Referência diretamente. Use a funcao de cadastro/edicao.")
 
     @senha.setter
