@@ -87,17 +87,17 @@ def edicao(ref):
         nome = request.form['nome']
         endereco = request.form['endereco']
         telefone = request.form['telefone']
-        ref = request.form['ref']
+        new_ref = request.form['ref']
         senha = request.form['senha']
         tipo = request.form['tipo']
         cpf_cnpj = request.form['cpf_cnpj']
         descricao = request.form['descricao']
 
-        if nome and endereco and telefone and ref and senha and tipo and cpf_cnpj:
+        if nome and endereco and telefone and new_ref and senha and tipo and cpf_cnpj:
             conn = get_db_connection()
             conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?, ref = ?, senha = ?, tipo = ?, cpf_cnpj = ?, descricao = ?'
                          ' WHERE ref = ?',
-                         (nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao, ref)
+                         (nome, endereco, telefone, new_ref, senha, tipo, cpf_cnpj, descricao, ref)
                          )
             conn.commit()
             conn.close()
