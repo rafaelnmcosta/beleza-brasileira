@@ -21,7 +21,7 @@ def get_user_by_ref(user_ref):
 
 
 # Inicia a variavel app que conterá o site
-app = Flask(__name__)
+app = Flask(__name__, template_folder='View')
 app.config['SECRET_KEY'] = 'Uma_string_muito_grande'
 
 
