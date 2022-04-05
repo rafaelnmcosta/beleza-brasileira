@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% block title %} Alterando {{ estab.nome }} {% endblock %}</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome"
+               placeholder="Nome do usuario" class="form-control"
+               value="{{ request.form['nome'] or estab.nome }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="ref">Referencia (@):</label>
+        <input type="text" name="ref"
+               placeholder="@usuario" class="form-control"
+               value="{{ request.form['ref'] or estab.ref }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="endereco">Endereco:</label>
+        <input type="text" name="endereco"
+               placeholder="Endereco do usuario" class="form-control"
+               value="{{ request.form['endereco'] or estab.endereco }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" name="telefone"
+               placeholder="Telefone do usuario" class="form-control"
+               value="{{ request.form['telefone'] or estab.telefone }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha"
+               placeholder="*********" class="form-control"
+               value="{{ request.form['senha'] or estab.senha }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="tipo">Tipo de conta:</label>
+        <input type="text" name="tipo"
+               placeholder="cliente ou estabelecimento" class="form-control"
+               value="{{ request.form['tipo'] or estab.tipo }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" name="cnpj"
+               placeholder="CNPJ" class="form-control"
+               value="{{ request.form['cnpj'] or estab.cnpj }}"/>
+    </div>
+
+    <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao"
+               placeholder="Informações" class="form-control"
+               value="{{ request.form['descricao'] or user.descricao }}"/>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark">Alterar</button>
+    </div>
+</form>
+<hr>
+<form action="{{ url_for('delete', ref=estab.ref) }}" method="POST">
+    <input type="submit" value="Excluir usuário"
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Quer realmente excluir este usuário?')">
+</form>
+
+{% endblock %}

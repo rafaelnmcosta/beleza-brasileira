@@ -1,7 +1,11 @@
 import sqlite3
+
+import sys
+sys.path.insert(0, '../')
+
 from Model.estabelecimento import Estabelecimento
 
-class estabelecimentoDAO:
+class EstabelecimentoDAO:
 
     def __init__(self, param_database):
         self.__database = param_database
@@ -24,8 +28,8 @@ class estabelecimentoDAO:
         else:
             return False
 
-    # Função que recebe um estabelecimento e o adiciona ao banco de dados
-    def addEstabelecimento(self, novo_estabelecimento):
+
+    def add_estabelecimento(self, novo_estabelecimento):
         conn = self.get_db_connection()
         conn.execute('INSERT INTO users'
             '(nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao)'
@@ -36,8 +40,8 @@ class estabelecimentoDAO:
         conn.close()
         return True
 
-    # Função que busca uma ref, instancia um objeto estabelecimento e retorna esse objeto
-    def getEstabelecimento(self, ref_estabelecimento):
+
+    def get_estabelecimento(self, ref_estabelecimento):
         conn = self.get_db_connection()
         estabelecimento = list(conn.execute('SELECT * FROM users WHERE ref = ?', (ref_estabelecimento,)).fetchone())
         conn.close()
@@ -57,8 +61,8 @@ class estabelecimentoDAO:
             )
             return estab
 
-    #Função que deleta um registro do banco de dados de acordo com a referencia que será informada
-    def deleteEstabelecimento(self, ref_estabelecimento):
+
+    def delete_estabelecimento(self, ref_estabelecimento):
         estab_del = self.getEstabelecimento(ref_estabelecimento)
         if estab_del:
             conn = self.get_db_connection()
@@ -69,8 +73,8 @@ class estabelecimentoDAO:
         else:
             return False
 
-    #Função que instancia um objeto para cada estabelecimento no banco de dados e os coloca em uma lista, depois retorna essa lista
-    def listEstabelecimentos(self):
+
+    def list_estabelecimentos(self):
         conn = self.get_db_connection()
         estabelecimentos_info = conn.execute('SELECT * FROM users WHERE tipo = "estabelecimento"').fetchall()
         conn.close()
@@ -90,11 +94,10 @@ class estabelecimentoDAO:
             estabelecimentos.append(estab_atual)
         return estabelecimentos
 
-    ''' Função que recebe um objeto estabelecimento e uma string ref, e altera no BD, na linha da ref,
-    os dados de acordo com as informações do objeto passado como parâmetro '''
-    def updateEstabelecimento(self, ref_original, estab_alterado):
+
+    def update_estabelecimento(self, ref_original, estab_alterado):
         conn = self.get_db_connection()
-        conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?, ref = ?, senha = ?, cpf_cnpj = ?'
+        conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?, ref = ?, senha = ?, cpf_cnpj = ?, descricao = ?'
             ' WHERE ref = ?',
             (estab_alterado.nome,
             estab_alterado.endereco,

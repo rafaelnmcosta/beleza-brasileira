@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Beleza Brasileira {% endblock %}
+
+{% block content %}
+    {% for estab in estabelecimentos %}
+        <hr>
+        <a href="{{ url_for('perfil', ref=estab.ref, ref_atual=user.ref) }}">
+            <h3>{{ estab.nome }}</h3>
+        </a>
+        <div class="well">
+        	<span class="badge badge-dark">{{ estab.ref }}</span>
+            <br>
+        	<p class="badge">{{ estab.descricao }}</p>
+            <br>
+        	<a href="{{ url_for('novo_servico', ref=estab.ref, ref_atual=user.ref) }}">
+        		<button type="button" class="btn btn-dark text-light">Agendar horário</button>
+    		</a>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,32 +1,18 @@
 import sqlite3
-from Model.cliente import Cliente
 
-class ClienteDAO:
+import sys
+sys.path.insert(0, '../')
+
+from Model.cliente import Cliente
+from .baseDAO import BaseDAO
+
+class ClienteDAO(BaseDAO):
 
     def __init__(self, param_database):
-        self.__database = param_database #String que contém o nome do banco de dados que será acessado
-
-    @property
-    def database(self):
-        return self.__database
-
-
-    @database.setter
-    def ref(self, new_database):
-        raise ValueError("Nao e permitido alterar o banco de dados")
-
-
-    # Função que abre a conexão com o banco de dados
-    def get_db_connection(self):
-        conn = sqlite3.connect(self.__database)
-        if conn:
-            conn.row_factory = sqlite3.Row
-            return conn
-        else:
-            return False
+        super().__init__(param_database) #String que contém o nome do banco de dados que será acessado
 
     # Função que recebe um objeto cliente e o adiciona ao banco de dados
-    def addCliente(self, novo_cliente):
+    def add_cliente(self, novo_cliente):
         conn = self.get_db_connection()
         conn.execute('INSERT INTO users'
             '(nome, endereco, telefone, ref, senha, tipo, cpf_cnpj, descricao)'
@@ -38,14 +24,15 @@ class ClienteDAO:
         return True
 
     # Função que busca uma ref, instancia um objeto cliente com as informações e retorna esse objeto
-    def getCliente(self, ref_cliente):
+    def get_cliente(self, ref_cliente):
         conn = self.get_db_connection()
-        cliente = list(conn.execute('SELECT * FROM users WHERE ref = ?', (ref_cliente,)).fetchone())
+        cliente = conn.execute('SELECT * FROM users WHERE ref = ?', (ref_cliente,)).fetchone()
         conn.close()
         if cliente is None:
             #abort(404)
             return False
         else:
+            cliente = list(cliente)
             cli = Cliente(
                 cliente[1],
                 cliente[2],
@@ -58,19 +45,19 @@ class ClienteDAO:
             return cli
 
     #Função que deleta um registro do banco de dados de acordo com a referencia informada
-    def deleteCliente(self, ref_cliente):
-        cli_del = self.getCliente(ref_cliente)
+    def delete_cliente(self, ref_cliente):
+        cli_del = self.get_cliente(ref_cliente)
         if cli_del:
             conn = self.get_db_connection()
             conn.execute('DELETE FROM users WHERE ref = ?', (ref_cliente,))
             conn.commit()
             conn.close()
-            return cli_del.nome
+            return cli_del
         else:
             return False
 
     #Função que instancia um objeto para cada cliente no banco de dados e os coloca em uma lista, depois retorna essa lista
-    def listClientes(self):
+    def list_clientes(self):
         conn = self.get_db_connection()
         clientes_info = conn.execute('SELECT * FROM users WHERE tipo = "cliente"').fetchall()
         conn.close()
@@ -91,7 +78,7 @@ class ClienteDAO:
 
     #Função que recebe um objeto cliente e uma string ref, e altera no BD, na linha da ref,
     # os dados de acordo com as informações do objeto passado como parâmetro 
-    def updateCliente(self, ref_original, cli_alterado):
+    def update_cliente(self, ref_original, cli_alterado):
         conn = self.get_db_connection()
         conn.execute('UPDATE users SET nome = ?, endereco = ?, telefone = ?, ref = ?, senha = ?, cpf_cnpj = ?'
             ' WHERE ref = ?',

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<br>
+	<h2>{% block title %} {{ cli.nome }} {% endblock %}</h2>
+    <p class="badge badge-dark">@{{ cli.ref }}</p>
+    <p>Endereço: {{ cli.endereco }}</p>
+    <p>Telefone: {{ cli.telefone }}</p>
+    <p>Tipo: {{ cli.tipo }}</p>
+    <p>CPF: {{ cli.cpf }}</p>
+{% endblock %}

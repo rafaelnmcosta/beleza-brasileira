@@ -14,31 +14,39 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{ url_for('home', ref=user.ref)}}">Beleza brasileira</a>
-            </div>
-            <div class="nav-item">
-                    <span class="nav-text text-light">Logado como {{user.ref}}</span>
+                <a class="navbar-brand" href="{{url_for('login')}}">Beleza brasileira</a>
             </div>
             <ul class="nav navbar-nav navbar">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('perfil', ref=user.ref, ref_atual=user.ref) }}">Perfil</a>
+                    <a class="nav-link" href="{{url_for('cadastro')}}">Cadastro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('login') }}">Sair</a>
+                    <a class="nav-link" href="{{url_for('sobre')}}">Sobre</a>
                 </li>
             </ul>
         </div>
     </nav>
-
+    
     <div class="container">
         {% for message in get_flashed_messages() %}
-            <div class="alert alert-danger">{{ message }}</div>
+            <div class="alert alert-danger">{{ message }}
         {% endfor %}
     </div>
 
     <div class="container">
-        {% block content %} {% endblock %}
+    {% block content %} {% endblock %}
     </div>
+
+    <style type="text/css">
+        .center{
+            position: absolute;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

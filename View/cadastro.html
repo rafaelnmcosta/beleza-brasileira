@@ -1,67 +1,70 @@
-{% extends 'base.html' %}
+{% extends 'base_login.html' %}
+
+{% block title %} Cadastro {% endblock %}
 
 {% block content %}
-<h1>{% block title %} Cadastro {% endblock %}</h1>
+    <br>
+    <h2>Cadastro</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome"
-               placeholder="Nome do usuario" class="form-control"
-               value="{{ request.form['nome'] }}"/>
-    </div>
+    <form method="post">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome"
+                   placeholder="Nome do usuario" class="form-control"
+                   value="{{ request.form['nome'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="endereco">Endereco:</label>
-        <input type="text" name="endereco"
-               placeholder="Endereco do usuario" class="form-control"
-               value="{{ request.form['endereco'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="endereco">Endereco:</label>
+            <input type="text" name="endereco"
+                   placeholder="Endereco do usuario" class="form-control"
+                   value="{{ request.form['endereco'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input type="text" name="telefone"
-               placeholder="Telefone do usuario" class="form-control"
-               value="{{ request.form['telefone'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="text" name="telefone"
+                   placeholder="Telefone do usuario" class="form-control"
+                   value="{{ request.form['telefone'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="ref">Referencia (@):</label>
-        <input type="text" name="ref"
-               placeholder="@usuario" class="form-control"
-               value="{{ request.form['ref'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="ref">Referencia (@):</label>
+            <input type="text" name="ref"
+                   placeholder="usuario" class="form-control"
+                   value="{{ request.form['ref'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha"
-               placeholder="*********" class="form-control"
-               value="{{ request.form['senha'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" name="senha"
+                   placeholder="*********" class="form-control"
+                   value="{{ request.form['senha'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="tipo">Tipo de conta:</label>
-        <input type="text" name="tipo"
-               placeholder="cliente ou estabelecimento" class="form-control"
-               value="{{ request.form['tipo'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="tipo">Tipo de conta:</label>
+            <input type="text" name="tipo"
+                   placeholder="cliente ou estabelecimento" class="form-control"
+                   value="{{ request.form['tipo'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="cpf_cnpj">CPF/CNPJ:</label>
-        <input type="text" name="cpf_cnpj"
-               placeholder="CPF ou CNPJ" class="form-control"
-               value="{{ request.form['cpf_cnpj'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="cpf_cnpj">CPF/CNPJ:</label>
+            <input type="text" name="cpf_cnpj"
+                   placeholder="CPF ou CNPJ" class="form-control"
+                   value="{{ request.form['cpf_cnpj'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao"
-               placeholder="Informações" class="form-control"
-               value="{{ request.form['descricao'] }}"/>
-    </div>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" name="descricao"
+                   placeholder="Informações" class="form-control"
+                   value="{{ request.form['descricao'] }}"/>
+        </div>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
-    </div>
-</form>
+        <div class="form-group">
+            <button type="submit" class="btn btn-dark">Cadastrar</button>
+        </div>
+    </form>
 {% endblock %}

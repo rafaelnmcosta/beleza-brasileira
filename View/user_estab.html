@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<br>
+	<h2>{% block title %} {{ estab.nome }} {% endblock %}</h2>
+    <p class="badge badge-dark">@{{ estab.ref }}</p>
+    <p>Endereço: {{ estab.endereco }}</p>
+    <p>Telefone: {{ estab.telefone }}</p>
+    <p>Tipo: {{ estab.tipo }}</p>
+    <p>CNPJ: {{ estab.cnpj }}</p>
+    <p>Descrição: {{estab.descricao}}</p>
+    <br>
+    <a href="{{ url_for('edicao', ref=estab.ref) }}">
+        <button type="button" class="btn btn-dark">Editar</button>
+    </a>
+{% endblock %}
