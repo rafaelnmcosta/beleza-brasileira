@@ -17,7 +17,6 @@ CREATE TABLE services (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     data DATE NOT NULL,
     horario TIME NOT NULL,
-    duracao INTEGER NOT NULL,
     descricao TEXT NOT NULL,
     ref_cliente TEXT NOT NULL,
     ref_estab TEXT NOT NULL

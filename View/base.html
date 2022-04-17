@@ -21,6 +21,9 @@
             </div>
             <ul class="nav navbar-nav navbar">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('perfil', ref=user.ref, ref_atual=user.ref) }}">Horários agendados</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('perfil', ref=user.ref, ref_atual=user.ref) }}">Perfil</a>
                 </li>
                 <li class="nav-item">

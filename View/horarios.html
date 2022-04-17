@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Horários Agendados {% endblock %}
+
+{% block content %}
+    {% for service in services %}
+        <hr>
+        
+        <div class="well">
+            <a href="{{ url_for('perfil', ref=service.ref_estab, ref_atual=user.ref) }}">
+                {{ service.ref_estab }}
+            </a>
+        	<span class="badge badge-dark">{{ service.data }}</span>
+            <span class="badge badge-dark">{{ service.horario }}</span>
+            <br>
+        	<p class="badge">{{ service.descricao }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

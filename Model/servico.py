@@ -2,13 +2,13 @@ from datetime import datetime
 
 class Servico:
 
-    def __init__(self, param_data, param_horario, param_duracao, param_descricao):
-        self.__data = None #datetime.strptime(paramData, '%d/%m/%Y')
-        self.__horario = None #datetime.strptime(paramHorario, '%H:%M')
-        self.__duracao = None
-        self.__descricao = None
-        self.__ref_cliente = None # Referencia do usuário que está requisitando um serviço
-        self.__ref_estab = None # Referencia do estabelecimento que realizará o serviço
+    def __init__(self, param_data, param_horario, param_duracao, param_descricao, param_cliente, param_estab):
+        self.__data = param_data #datetime.strptime(paramData, '%d/%m/%Y')
+        self.__horario = param_horario #datetime.strptime(paramHorario, '%H:%M')
+        self.__duracao = param_duracao
+        self.__descricao = param_descricao
+        self.__ref_cliente = param_cliente # Referencia do usuário que está requisitando um serviço
+        self.__ref_estab = param_estab # Referencia do estabelecimento que realizará o serviço
 
     @property
     def data(self):
