@@ -1,37 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<br>
-	<h2>{% block title %} Agendamento {{ estab.nome }} {% endblock %}</h2>
+ <br>
+ <h2>{% block title %} Agendamento {{ estab.nome }} {% endblock %}</h2>
     <p class="badge badge-dark">@{{ estab.ref }}</p>
     <p>Descrição: {{estab.descricao}}</p>
     <br>
     <form method="post">
-	    <div class="form-group">
-	        <label for="data">Data:</label>
-	        <input type="date" name="data" value="{{ request.form['data'] }}"/>
-	    </div>
+     <div class="form-group">
+         <label for="data">Data:</label>
+         <input type="date" name="data" value="{{ request.form['data'] }}"/>
+     </div>
 
-	    <div class="form-group">
-	        <label for="horario">Horário:</label>
-	        <input type="time" name="horario" value="{{ request.form['ref'] or cli.ref }}"/>
-	    </div>
+     <div class="form-group">
+         <label for="horario">Horário:</label>
+         <input type="time" name="horario" value="{{ request.form['horario'] }}"/>
+     </div>
 
-	    <div class="form-group">
-	        <label for="descricao">Descrição:</label>
-	        <input type="text" name="descricao"
-	               placeholder="Uma breve descrição do serviço" class="form-control"
-	               value="{{ request.form['descricao'] }}"/>
-	    </div>
+     <div class="form-group">
+         <label for="descricao">Descrição:</label>
+         <input type="text" name="descricao"
+                placeholder="Uma breve descrição do serviço" class="form-control"
+                value="{{ request.form['descricao'] }}"/>
+     </div>
 
-	    <div class="form-group">
-	        <button type="submit" class="btn btn-dark">Alterar</button>
-	    </div>
-	</form>
-	<hr>
-	<form action="{{ url_for('delete', ref=cli.ref) }}" method="POST">
-	    <input type="submit" value="Excluir usuário"
-	            class="btn btn-danger btn-sm"
-	            onclick="return confirm('Quer realmente excluir este usuário?')">
-	</form>
+     <div class="form-group">
+         <button type="submit" class="btn btn-dark">Agendar</button>
+     </div>
+ </form>
 {% endblock %}
