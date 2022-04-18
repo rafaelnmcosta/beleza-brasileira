@@ -7,7 +7,7 @@ from Model.servico import Servico
 
 class ServicoDAO:
 
-    def _init_(self, param_database):
+    def __init__(self, param_database):
         self.__database = param_database #String que contém o nome do banco de dados que será acessado
 
     @property

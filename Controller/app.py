@@ -7,8 +7,11 @@ sys.path.insert(0, '../')
 from DAO.baseDAO import BaseDAO
 from DAO.clienteDAO import ClienteDAO
 from DAO.estabelecimentoDAO import EstabelecimentoDAO
+from DAO.servicoDAO import ServicoDAO
+
 from Model.cliente import Cliente
 from Model.estabelecimento import Estabelecimento
+from Model.servico import Servico
 
 app = Flask(__name__, template_folder='../View')
 app.config['SECRET_KEY'] = 'Uma_string_muito_grande'
@@ -91,6 +94,44 @@ def home(ref):
     else:
         clientes = cliDAO.list_clientes()
         return render_template("sobre.html")
+
+
+@app.route('/<ref>/horarios')
+def horarios(ref):
+    novoDAO = BaseDAO(database)
+    user = novoDAO.get_user_by_ref(ref)
+    servDAO = ServicoDAO(database)
+    services = servDAO.list_services_for_user(user.ref)
+    return render_template("horarios.html", services=services, user=user)
+
+
+@app.route('/<ref_atual>/servico/<ref>', methods=('GET', 'POST'))
+def novo_servico(ref, ref_atual):
+    novoDAO = BaseDAO(database)
+    estabDAO = EstabelecimentoDAO(database)
+    servDAO = ServicoDAO(database)
+    user = novoDAO.get_user_by_ref(ref_atual)
+    estab = estabDAO.get_estabelecimento(ref)
+
+    if request.method == 'POST':
+        data = request.form['data']
+        horario = request.form['horario']
+        descricao = request.form['descricao']
+
+        if data and horario and descricao:
+            new_service = Servico(data, horario, descricao, user.ref, estab.ref)
+            if not servDAO.new_service(new_service):
+                flash('Erro ao agendar horario!')
+            else:
+                flash('Horário agendado!')
+                return redirect(url_for('home', ref=user.ref))
+
+        else:
+            flash('É preciso preencher todos os campos!')
+            return render_template('agendamento.html', estab=estab, user=user)
+
+    else:
+        return render_template('agendamento.html', estab=estab, user=user)
 
 
 @app.route('/<ref_atual>/<ref>')
@@ -191,11 +232,5 @@ def delete(ref):
         flash('Erro ao excluir conta!')
         return redirect(url_for('home', ref))
 
-
-@app.route('/<ref_atual>/servico/<ref>')
-def novo_servico(ref, ref_atual):
-    return render_template('sobre.html')
-
 if __name__ == '__main__':
     app.run()
-

@@ -2,7 +2,7 @@ from datetime import datetime
 
 class Servico:
 
-    def _init_(self, param_data, param_horario, param_descricao, param_cliente, param_estab):
+    def __init__(self, param_data, param_horario, param_descricao, param_cliente, param_estab):
         self.__data = param_data #datetime.strptime(paramData, '%d/%m/%Y')
         self.__horario = param_horario #datetime.strptime(paramHorario, '%H:%M')
         self.__descricao = param_descricao
