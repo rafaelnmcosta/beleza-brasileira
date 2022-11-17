@@ -5,8 +5,6 @@
 o processo de agendamento e realização de serviços.<br>
 É escrito em python com foco para a Programação Orientada a Objetos, utilizando flask, banco de dados SQLite e Bootstrap, utilizando o padrão de projeto de software MVC.<br>
 Este projeto está sendo desenvolvido pelos alunos: Rafael(CC), Isadora(IA), Alerhandra(IA) e Evellyn(IA).<br>
-O projeto é apenas básico para trabalhar 
-
 ## Estrutura do projeto
 1. Raíz do projeto <br>
 Possui todas as pastas do projeto, um arquivo gitignore e um README.<br>
